@@ -1,0 +1,80 @@
+<main class="h-full bg-[#363636]">
+    <section class="flex h-full bg-[#26282B]">
+        <section class=" w-[15rem] shadow-lg p-1 border border-gray-600">
+            <h2 class="text-lg text-center font-semibold">Dados do Cliente</h2>
+            <div *ngIf="orcamento$ | async as orcamento">
+                <ul>
+                    <li>
+                        Nome : {{orcamento.cliente}}
+                    </li>
+                    <li>
+                        Telefone : {{orcamento.telefone}}
+                    </li>
+                    <li>
+                        Carro : {{orcamento.carro}}
+                    </li>
+                    <li>
+                        Placa : {{orcamento.placa}}
+                    </li>
+                    <li>
+                        Chassis : {{orcamento.chassis}}
+                    </li>
+                    <li>
+                        Abertura : {{orcamento.createdAt | date: 'dd/MM/yyyy HH:mm' }}
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="flex-1 p-1 shadow-md border border-gray-600 ">
+
+            <h2 class="text-lg text-center font-semibold">Orçamento</h2>
+
+            <table class="w-full text-left rtl:text-right  ">
+                <thead class="text-sm uppercase bg-[#191919] ">
+                    <tr>
+                        <th class="text-center">Quant</th>
+                        <th>Descrição</th>
+                        <th>Sku</th>
+                        <th>Marca</th>
+                        <th>Link</th>
+                        <th class="text-right">Preço Unit</th>
+                        <th class="text-right">Preço Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+
+                <tbody *ngIf="orcamento$ | async as orcamento" class=" border-b text-sm border-gray-700 text-gray-400">
+                    <tr *ngFor="let item of orcamento.produtos"
+                        class="bg-[#363333] hover:bg-[#252525] hover:text-gray-300 transition duration-300 border-b border-b-gray-600">
+                        <td class="px-1 py-2 text-center">
+                            {{item.quantidade}}
+                        </td>
+                        <td class="px-1 py-2 ">
+                            {{item.nomeProduto | titlecase}}
+                        </td>
+                        <td class="px-1 py-2 ">{{item.sku | uppercase}}</td>
+                        <td class="px-1 py-2 ">{{item.marca | uppercase}}</td>
+                        <td class="px-1 py-2 ">
+                            <a href="{{item.link}}" target="_blank" rel="noopener noreferrer"
+                                title="Abrir Link do Produto"
+                                class=" text-blue-600 hover:text-blue-300 transition duration-300">
+                                <i class="fa-brands fa-chrome"></i>
+                            </a>
+                        </td>
+                        <td class="px-1 py-2 text-right">{{item.precoVenda | currency:'BRL':'symbol':'1.2-2'}}</td>
+                        <td class="px-1 py-2 text-right">{{ item.quantidade * item.precoVenda |
+                            currency:'BRL':'symbol':'1.2-2'}}
+                        </td>
+                        <td class="flex gap-2 justify-center ">
+                            <button title="Remover Produto">
+                                <i class="fa-solid fa-trash py-2 px-2 text-white bg-red-900 hover:bg-red-700"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </section>
+</main>

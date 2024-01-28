@@ -1,0 +1,4 @@
+<div *ngIf="this.loadingService.loading$ | async" id="loading-overlay"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-950  bg-opacity-60">
+    <span class="text-white text-3xl font-bold"><span class="loader"></span>Carregando...</span>
+</div>

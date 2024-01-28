@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, map, finalize } from 'rxjs';
-import { IOrcamento } from '../interfaces/IOrcamento';
-import { environment } from '../../environments/environment.development';
-import { LoadingService } from './loading.service';
+import { IOrcamento } from '../../interfaces/IOrcamento';
+import { environment } from '../../../environments/environment.development';
+import { LoadingService } from '../loading/loading.service';
 
 @Injectable({
   providedIn: 'root',
